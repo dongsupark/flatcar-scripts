@@ -124,7 +124,7 @@ generate_binhost_list() {
   [[ "${FLAGS_toolchainpkgonly}" -eq "${FLAGS_TRUE}" ]] && t="-t"
   FLAGS_getbinpkgver="${FLAGS_getbinpkgver/current/${FLATCAR_VERSION_ID}}"
   FLAGS_getbinpkgver="${FLAGS_getbinpkgver/latest/${FLATCAR_VERSION_ID}}"
-  FLAGS_getbinpkgver="${FLAGS_getbinpkgver/sdk/${FLATCAR_SDK_VERSION}}"
+  FLAGS_getbinpkgver="${FLAGS_getbinpkgver/developer/sdk/${FLATCAR_SDK_VERSION}}"
 
   get_board_binhost $t "${BOARD}" ${FLAGS_getbinpkgver}
 }

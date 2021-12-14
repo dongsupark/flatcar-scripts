@@ -179,7 +179,7 @@ get_sdk_binhost() {
         set -- "${FLATCAR_SDK_VERSION}"
     fi
 
-    FLATCAR_DEV_BUILDS_SDK="${FLATCAR_DEV_BUILDS_SDK-$FLATCAR_DEV_BUILDS/sdk}"
+    FLATCAR_DEV_BUILDS_SDK="${FLATCAR_DEV_BUILDS_SDK-$FLATCAR_DEV_BUILDS/developer/sdk}"
     for ver in "$@"; do
         # Usually only crossdev needs to be fetched from /toolchain/ in the setup_board step.
         # The entry for /pkgs/ is there if something needs to be reinstalled in the SDK
