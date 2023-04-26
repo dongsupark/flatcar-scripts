@@ -3,7 +3,10 @@ on:
   pull_request:
     # Run when the PR is ready and each time a review is re-requested
     #  (i.e. after feedback has been addressed).
-    types: [review_requested, ready_for_review]
+    types:
+      - opened
+      - reopened
+      - synchronize
   workflow_dispatch:
     inputs:
       image_formats:
