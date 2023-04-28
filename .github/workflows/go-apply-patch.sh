@@ -9,6 +9,11 @@ prepare_git_repo
 # create a mapping between short version and new version, e.g. 1.16 -> 1.16.3
 declare -A VERSIONS
 for version_new in ${VERSIONS_NEW}; do
+  if ! check_remote_branch "go-${version_new}-${TARGET_BRANCH}"; then
+      echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
+      exit 0
+  fi
+
   version_new_trimmed="${version_new%.*}"
   if [[ "${version_new_trimmed%.*}" = "${version_new_trimmed}" ]]; then
     version_new_trimmed="${version_new}"
@@ -56,8 +61,9 @@ done
 cleanup_repo
 
 if [[ $any_different -eq 0 ]]; then
-  echo "go packages were already at the latest versions, nothing to do"
-  exit 0
+    echo "go packages were already at the latest versions, nothing to do"
+    echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
+    exit 0
 fi
 
 vo_gh="$(join_by ' and ' "${UPDATED_VERSIONS_OLD[@]}")"

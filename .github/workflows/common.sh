@@ -64,6 +64,15 @@ function prepare_git_repo() {
   git -C "${SDK_OUTER_TOPDIR}" config user.email "${BUILDBOT_USEREMAIL}"
 }
 
+function check_remote_branch() {
+  local TARGET_BRANCH="${1}"
+
+  if git -C "${SDK_OUTER_TOPDIR}" show-ref "remotes/origin/${TARGET_BRANCH}"; then
+    echo "Target branch already exists. exit."
+    return 1
+  fi
+}
+
 # Regenerates a manifest file using an ebuild of a given package with
 # a given version.
 #
