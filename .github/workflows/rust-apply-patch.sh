@@ -6,12 +6,18 @@ source "${GHA_SCRIPTS_DIR}/.github/workflows/common.sh"
 
 prepare_git_repo
 
+if ! check_remote_branch "rust-${VERSION_NEW}-${TARGET_BRANCH}"; then
+    echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
+    exit 0
+fi
+
 pushd "${SDK_OUTER_OVERLAY}"
 
 VERSION_OLD=$(sed -n "s/^DIST rustc-\(1\.[0-9]*\.[0-9]*\).*/\1/p" dev-lang/rust/Manifest | sort -ruV | head -n1)
 if [[ "${VERSION_NEW}" = "${VERSION_OLD}" ]]; then
-  echo "already the latest Rust, nothing to do"
-  exit 0
+    echo "already the latest Rust, nothing to do"
+    echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
+    exit 0
 fi
 
 # Replace (dev-lang/virtual)/rust versions in profiles/, e.g. package.accept_keywords.
