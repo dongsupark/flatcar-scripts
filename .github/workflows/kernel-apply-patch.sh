@@ -6,6 +6,11 @@ source "${GHA_SCRIPTS_DIR}/.github/workflows/common.sh"
 
 prepare_git_repo
 
+if ! check_remote_branch "linux-${VERSION_NEW}-${TARGET_BRANCH}"; then
+    echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
+    exit 0
+fi
+
 pushd "${SDK_OUTER_OVERLAY}"
 
 # trim the 3rd part in the input semver, e.g. from 5.4.1 to 5.4
@@ -16,6 +21,7 @@ if [[ -z "${VERSION_OLD}" ]]; then
 fi
 if [[ "${VERSION_NEW}" = "${VERSION_OLD}" ]]; then
     echo "already the latest Kernel, nothing to do"
+    echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
     exit 0
 fi
 
