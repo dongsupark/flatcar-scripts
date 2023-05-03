@@ -60,6 +60,8 @@ jobs:
           path: scripts
           branch: runc-${{ steps.runc-latest-release.outputs.VERSION_NEW }}-main
           base: main
+          author: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
+          committer: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
           title: Upgrade Runc in main from ${{ steps.apply-patch-main.outputs.VERSION_OLD }} to ${{ steps.runc-latest-release.outputs.VERSION_NEW }}
           body: Subject says it all.
           labels: main

@@ -48,6 +48,8 @@ jobs:
           path: scripts
           branch: docker-${{ steps.docker-latest-release.outputs.VERSION_NEW }}-main
           base: main
+          author: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
+          committer: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
           title: Upgrade Docker in main from ${{ steps.apply-patch-main.outputs.VERSION_OLD }} to ${{ steps.docker-latest-release.outputs.VERSION_NEW }}
           body: Subject says it all.
           labels: main

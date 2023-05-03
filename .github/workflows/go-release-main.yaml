@@ -43,6 +43,8 @@ jobs:
           path: scripts
           branch: ${{ steps.apply-patch-main.outputs.BRANCH_NAME }}
           base: main
+          author: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
+          committer: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
           title: Upgrade Go from ${{ steps.apply-patch-main.outputs.VERSIONS_OLD }} to ${{ steps.apply-patch-main.outputs.VERSIONS_NEW }}
           body: Subject says it all.
           labels: main

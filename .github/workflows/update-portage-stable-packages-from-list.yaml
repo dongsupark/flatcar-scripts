@@ -76,6 +76,8 @@ jobs:
           branch: buildbot/weekly-portage-stable-package-updates-${{steps.update-listed-packages.outputs.TODAYDATE }}
           delete-branch: true
           base: main
+          author: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
+          committer: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
           title: Weekly portage-stable package updates ${{steps.update-listed-packages.outputs.TODAYDATE }}
           body: |
             CI: TODO
