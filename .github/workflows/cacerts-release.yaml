@@ -63,6 +63,8 @@ jobs:
           path: work
           branch: "cacerts-${{ steps.nss-latest-release.outputs.NSS_VERSION }}-${{ steps.figure-out-branch.outputs.BRANCH }}"
           base: ${{ steps.figure-out-branch.outputs.BRANCH }}
+          author: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
+          committer: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
           title: Update ca-certificates in ${{ steps.figure-out-branch.outputs.BRANCH }} from ${{ steps.apply-patch.outputs.VERSION_OLD }} to ${{ steps.nss-latest-release.outputs.NSS_VERSION }}
           body: Subject says it all.
           labels: ${{ steps.figure-out-branch.outputs.LABEL }}

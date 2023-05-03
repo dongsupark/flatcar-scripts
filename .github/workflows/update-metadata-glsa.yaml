@@ -28,6 +28,8 @@ jobs:
           branch: buildbot/monthly-glsa-metadata-updates-${{steps.update-glsa-metadata.outputs.TODAYDATE }}
           delete-branch: true
           base: main
+          author: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
+          committer: "Flatcar Buildbot <buildbot@flatcar-linux.org>"
           title: Monthly GLSA metadata ${{steps.update-glsa-metadata.outputs.TODAYDATE }}
           body: Updated GLSA metadata
           commit-message: "portage-stable/metadata: Monthly GLSA metadata updates"
