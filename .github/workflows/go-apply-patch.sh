@@ -6,14 +6,14 @@ source "${GHA_SCRIPTS_DIR}/.github/workflows/common.sh"
 
 prepare_git_repo
 
-if ! check_remote_branch "go-${VERSION_NEW}-${TARGET_BRANCH}"; then
-    echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
-    exit 0
-fi
-
 # create a mapping between short version and new version, e.g. 1.16 -> 1.16.3
 declare -A VERSIONS
 for version_new in ${VERSIONS_NEW}; do
+  if ! check_remote_branch "go-${version_new}-${TARGET_BRANCH}"; then
+      echo 'UPDATE_NEEDED=0' >>"${GITHUB_OUTPUT}"
+      exit 0
+  fi
+
   version_new_trimmed="${version_new%.*}"
   if [[ "${version_new_trimmed%.*}" = "${version_new_trimmed}" ]]; then
     version_new_trimmed="${version_new}"
