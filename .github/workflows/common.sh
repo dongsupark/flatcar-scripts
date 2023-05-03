@@ -173,12 +173,17 @@ function commit_changes() {
 
   regenerate_manifest "${pkg}" "${new_version}"
 
-  pushd "${SDK_OUTER_OVERLAY}"
+  pushd "${SDK_OUTER_TOPDIR}"
 
-  git add "${pkg}"
   if [[ -d changelog ]]; then
     git add changelog
   fi
+
+  popd
+
+  pushd "${SDK_OUTER_OVERLAY}"
+
+  git add "${pkg}"
   for dir; do
     git add "${dir}"
   done
