@@ -9,6 +9,8 @@ prepare_git_repo
 if ! check_remote_branch "linux-${VERSION_NEW}-${TARGET_BRANCH}"; then
     echo "remote branch already exists, nothing to do"
     exit 0
+else
+    echo "no branch"
 fi
 
 pushd "${SDK_OUTER_OVERLAY}"

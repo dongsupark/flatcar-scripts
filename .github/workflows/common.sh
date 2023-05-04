@@ -67,9 +67,20 @@ function prepare_git_repo() {
 function check_remote_branch() {
   local target_branch="${1}"
 
+  echo "SDK_OUTER_TOPDIR=${SDK_OUTER_TOPDIR}"
+  echo "target_branch=${target_branch}"
+
+  echo "git remote -v"
+  git -C "${SDK_OUTER_TOPDIR}" remote -v
+  echo ""
+  echo "git show-ref"
+  git -C "${SDK_OUTER_TOPDIR}" show-ref
+
   if git -C "${SDK_OUTER_TOPDIR}" show-ref "remotes/origin/${target_branch}"; then
+    echo "return 1"
     return 1
   fi
+  echo "return 0"
   return 0
 }
 
