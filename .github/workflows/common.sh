@@ -67,6 +67,11 @@ function prepare_git_repo() {
 function check_remote_branch() {
   local target_branch="${1}"
 
+  # It is needed to first fetch remote branches before checking for remote
+  # branches, because the GitHub Actions checkout fetches with only depth 1
+  # by default, so that only main branch is available.
+  git -C "${SDK_OUTER_TOPDIR}" fetch origin
+
   if git -C "${SDK_OUTER_TOPDIR}" show-ref "remotes/origin/${target_branch}"; then
     return 1
   fi
