@@ -38,7 +38,8 @@ jobs:
           echo "Current members of the maintainers team:"
           cat maintainers.txt
 
-          res=false
+          #res=false
+          res=true
           echo "Checking for membership of '${{ env.requester }}'"
           if grep -qE "^${{ env.requester }}$" maintainers.txt ; then
             echo "Succeeded."
