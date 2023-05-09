@@ -18,6 +18,8 @@
 # Flatcar CI automation garbage collector.
 #  This script removes development (non-official) build artifacts:
 #   - SDK tarballs, build step containers, and vendor images on buildcache
+#   - SDK containers built via Github actions (e.g. from PRs).
+#      See https://github.com/flatcar/scripts/blob/main/.github/workflows/update-sdk.yaml
 #   - tags from the scripts repository
 #
 #  Garbage collection is based on development (non-official) version tags
