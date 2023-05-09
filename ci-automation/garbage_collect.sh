@@ -144,6 +144,12 @@ function _garbage_collect_impl() {
         fi
     done
 
+    echo
+    echo "########################################"
+    echo
+    echo    Running cloud garbace collector
+    echo
+
     local mantle_ref
     mantle_ref=$(cat sdk_container/.repo/manifests/mantle-container)
     docker run --pull always --rm --net host \
@@ -155,5 +161,14 @@ function _garbage_collect_impl() {
       --env VMWARE_ESX_CREDS \
       --env OPENSTACK_CREDS \
       -w /work -v "$PWD":/work "${mantle_ref}" /work/ci-automation/garbage_collect_cloud.sh
+
+    echo
+    echo "#############################################"
+    echo
+    echo    Running Github CI SDK garbace collector
+    echo
+
+    source ci-automation/garbage_collect_github_ci_sdk.sh
+    garbage_collect_github_ci
 }
 # --
