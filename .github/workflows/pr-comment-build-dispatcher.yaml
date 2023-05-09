@@ -62,7 +62,7 @@ jobs:
     needs: [ check_maintainer_membership, build_sdk ]
     if: ( always() && needs.check_maintainer_membership.result == 'success'
                    && (    contains(github.event.comment.body, '/build-image') 
-                        || needs.build_sdk.result == 'success' )
+                        || needs.build_sdk.result == 'success' ))
     name: "Build the OS image"
     uses: ./.github/workflows/ci.yaml
     with:
